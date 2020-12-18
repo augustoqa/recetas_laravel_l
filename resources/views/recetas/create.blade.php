@@ -30,6 +30,15 @@
     				@enderror
     			</div>
 
+                <div class="form-group">
+                    <label for="categoria">Categoria</label>
+                    <select name="categoria" id="categoria" class="form-control">
+                        @foreach($categorias as $id => $categoria)
+                        <option value="{{ $id }}">{{ $categoria }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
     			<div class="form-group">
     				<input type="submit" class="btn btn-primary" value="Agregar Receta">
     			</div>
