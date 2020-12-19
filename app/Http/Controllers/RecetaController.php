@@ -44,7 +44,8 @@ class RecetaController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
-            'titulo' => 'required|min:6'
+            'titulo' => 'required|min:6',
+            'categoria' => 'required',
         ]);
 
         DB::table('recetas')->insert([
