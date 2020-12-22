@@ -64,12 +64,11 @@ class RecetaController extends Controller
         $img = Image::make(public_path("storage/{$ruta_imagen}"))->fit(1000, 550);
         $img->save();
 
-        DB::table('recetas')->insert([
+        auth()->user()->recetas()->create([
             'titulo' => $data['titulo'],
             'preparacion' => $data['preparacion'],
             'ingredientes' => $data['ingredientes'],
             'imagen' => $ruta_imagen,
-            'user_id' => Auth::user()->id,
             'categoria_id' => $data['categoria'],
         ]);
 
