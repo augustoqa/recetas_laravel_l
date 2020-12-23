@@ -23,7 +23,7 @@
 			<p>
 				<span class="font-weight-bold text-primary">Fecha:</span>
 				{{-- TODO:: mostrar el usuario --}}
-				{{ $receta->created_at }}
+				{{ $receta->created_at->diffForHumans() }}
 			</p>
 
 			<div class="ingredientes">
