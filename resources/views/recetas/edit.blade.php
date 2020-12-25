@@ -13,8 +13,10 @@
 
     <div class="row justify-content-center mt-5">
     	<div class="col-md-8">
-    		<form method="POST" action="{{ route('recetas.store') }}" enctype="multipart/form-data" novalidate>
+    		<form method="POST" action="{{ route('recetas.update', ['receta' => $receta->id]) }}" enctype="multipart/form-data" novalidate>
     			@csrf
+
+                @method('PUT')
 
     			<div class="form-group">
     				<label for="titulo">Titulo Receta</label>
@@ -109,7 +111,7 @@
                 </div>
 
     			<div class="form-group">
-    				<input type="submit" class="btn btn-primary" value="Agregar Receta">
+    				<input type="submit" class="btn btn-primary" value="Editar Receta">
     			</div>
     		</form>
     	</div>
