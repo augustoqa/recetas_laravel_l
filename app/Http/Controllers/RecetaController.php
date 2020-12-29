@@ -110,7 +110,7 @@ class RecetaController extends Controller
     {
         // Revisar el policy
         $this->authorize('update', $receta);
-        
+
         // validación
         $data = request()->validate([
             'titulo' => 'required|min:6',
@@ -145,10 +145,15 @@ class RecetaController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Receta  $receta
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Receta $receta)
     {
-        //
+        // Ejecutar el Policy
+        $this->authorize('delete', $receta);
+
+        $receta->delete();
+
+        return redirect()->route('recetas.index');
     }
 }
