@@ -11,7 +11,27 @@ export default {
     props: ['recetaId'],
     methods: {
         eliminarReceta() {
-            console.log('click', this.recetaId);
+            this.$swal({
+                title: '¿Deseas eliminar esta receta?',
+                text: "Una vez eliminada, no se puede recuperar",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    // Enviar la petición al servidor
+
+                    this.$swal({
+                        title: 'Receta Eliminada',
+                        text: 'Se eliminó la receta',
+                        icon: 'success'
+                    })
+                }
+            })
         }
     }
 }
