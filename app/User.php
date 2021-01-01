@@ -19,6 +19,17 @@ class User extends Authenticatable
         'name', 'email', 'password', 'url',
     ];
 
+    // Evento que se ejecuta cuando un usuario es creado
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Asignar perfil una vez se haya creado un usuario
+        static::created(function ($user) {
+            $user->perfil()->create();
+        });
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
