@@ -5,7 +5,12 @@
 @endsection
 
 @section('botones')
-    <a href="{{ route('recetas.index') }}" class="btn btn-primary mr-2">Volver</a>
+    <a href="{{ route('recetas.index') }}" class="btn btn-outline-primary mr-2 text-uppercase font-weight-bold">
+        <svg class="icono" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+        </svg>
+        Volver
+    </a>
 @endsection
 
 @section('content')
@@ -18,13 +23,13 @@
 
     			<div class="form-group">
     				<label for="titulo">Titulo Receta</label>
-    				<input 
-    					type="text" 
-    					name="titulo" 
-    					class="form-control @error('titulo') is-invalid @enderror" 
-    					id="titulo" 
+    				<input
+    					type="text"
+    					name="titulo"
+    					class="form-control @error('titulo') is-invalid @enderror"
+    					id="titulo"
     					placeholder="Titulo Receta"
-    					value="{{ old('titulo') }}" 
+    					value="{{ old('titulo') }}"
     				>
 
     				@error('titulo')
@@ -39,8 +44,8 @@
                     <select name="categoria" id="categoria" class="form-control @error('categoria') is-invalid @enderror">
                         <option value="">-- Seleccione --</option>
                         @foreach($categorias as $categoria)
-                        <option 
-                            value="{{ $categoria->id }}" 
+                        <option
+                            value="{{ $categoria->id }}"
                             {{ old('categoria') == $categoria->id ? 'selected' : '' }}
                         >
                             {{ $categoria->nombre }}
@@ -58,7 +63,7 @@
                 <div class="form-group mt-3">
                     <label for="preparacion">Preparación</label>
                     <input type="hidden" name="preparacion" id="preparacion" value="{{ old('preparacion') }}">
-                    <trix-editor 
+                    <trix-editor
                         class="form-control @error('preparacion') is-invalid @enderror"
                         input="preparacion"
                     ></trix-editor>
@@ -73,7 +78,7 @@
                 <div class="form-group mt-3">
                     <label for="ingredientes">Ingredientes</label>
                     <input type="hidden" name="ingredientes" id="ingredientes" value="{{ old('ingredientes') }}">
-                    <trix-editor 
+                    <trix-editor
                         class="form-control @error('ingredientes') is-invalid @enderror"
                         input="ingredientes"
                     ></trix-editor>
@@ -88,7 +93,7 @@
                 <div class="form-group mt-3">
                     <label for="imagen">Elige la imagen</label>
 
-                    <input 
+                    <input
                         name="imagen"
                         type="file"
                         id="imagen"
