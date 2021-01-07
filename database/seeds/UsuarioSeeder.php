@@ -20,15 +20,11 @@ class UsuarioSeeder extends Seeder
             'url' => 'http:://codigoconchecha',
         ]);
 
-        $user->perfil()->create();
-
         $user2 = User::create([
             'name' => 'Pablo',
             'email' => 'correo2@correo.com',
             'password' => Hash::make('12345678'),
             'url' => 'http:://codigoconpablo'
         ]);
-
-        $user2->perfil()->create();
     }
 }
