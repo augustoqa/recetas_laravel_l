@@ -87,7 +87,10 @@ class RecetaController extends Controller
         // Obtener me gusta
         $like = ( auth()->user() ) ? auth()->user()->meGusta->contains($receta->id)  : false;
 
-        return view('recetas.show', compact('receta', 'like'));
+        // Cantidad de likes en la receta
+        $likes = $receta->likes->count();
+
+        return view('recetas.show', compact('receta', 'like', 'likes'));
     }
 
     /**

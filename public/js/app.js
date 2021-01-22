@@ -1997,15 +1997,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['recetaId', 'like'],
+  props: ['recetaId', 'like', 'likes'],
+  data: function data() {
+    return {
+      totalLikes: this.likes
+    };
+  },
   methods: {
     likeReceta: function likeReceta() {
+      var _this = this;
+
       axios.post('/recetas/' + this.recetaId).then(function (respuesta) {
-        console.log(respuesta);
+        if (respuesta.data.attached.length > 0) {
+          _this.$data.totalLikes++;
+        } else {
+          _this.$data.totalLikes--;
+        }
       })["catch"](function (error) {
         console.log(error);
       });
+    }
+  },
+  computed: {
+    cantidadLikes: function cantidadLikes() {
+      return this.totalLikes;
     }
   }
 });
@@ -66500,11 +66519,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", {
-    staticClass: "heart",
-    class: { "is-active": this.like },
-    on: { click: _vm.likeReceta }
-  })
+  return _c("div", [
+    _c("div", {
+      staticClass: "heart",
+      class: { "is-active": this.like },
+      on: { click: _vm.likeReceta }
+    }),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.cantidadLikes) + " Les gustó esta receta")])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
