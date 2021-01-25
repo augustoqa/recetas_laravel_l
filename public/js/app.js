@@ -2004,6 +2004,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['recetaId', 'like', 'likes'],
   data: function data() {
     return {
+      isActive: this.like,
       totalLikes: this.likes
     };
   },
@@ -2017,8 +2018,12 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           _this.$data.totalLikes--;
         }
+
+        _this.isActive = !_this.isActive;
       })["catch"](function (error) {
-        console.log(error);
+        if (error.response.status === 401) {
+          window.location = '/register';
+        }
       });
     }
   },
@@ -66521,8 +66526,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", {
-      staticClass: "heart",
-      class: { "is-active": this.like },
+      staticClass: "heart m-0",
+      class: { "is-active": _vm.isActive },
       on: { click: _vm.likeReceta }
     }),
     _vm._v(" "),
