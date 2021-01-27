@@ -26,11 +26,9 @@ class InicioController extends Controller
                     ->get();
         }
 
-        return $recetas;
-
         // Recetas por categoría
         $mexicana = Receta::where('categoria_id', 1)->get();
 
-        return view('inicio.index', \compact('nuevas'));
+        return view('inicio.index', \compact('nuevas', 'recetas'));
     }
 }
